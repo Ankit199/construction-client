@@ -1,0 +1,59 @@
+<div class="card">
+  <h5 class="card-header bg-info">Add Item Department</h5>
+  <form #myForm="ngForm">
+  <div class="card-body">
+   
+      <div class="form-group row">
+        <label for="itemdepartment" class="col-sm-2 col-form-label"> Department</label>
+        <div class="col-sm-10">
+          <input type="text" #department="ngModel" [(ngModel)]="departmentModel.department" required name="department" class="form-control" id="itemdepartment" placeholder="Please enter item department">
+        </div>
+      </div>
+  
+  </div>
+  <div class="card-footer text-center">
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button type="submit" [disabled]="!myForm.valid" class="btn btn-primary" (click)="postdata()">Submit</button>
+      </div>
+    </div>
+  </div>
+</form>
+</div>
+<toastr-notification></toastr-notification>  
+<div class="clerifix"><br /></div>
+<app-confirmation-dialog></app-confirmation-dialog>  
+<div class="table-responsive" *ngIf="dptdata.length>0">
+  <table id="mytable" class="table  table-bordred table-striped">
+
+    <thead class="bg-info">
+      <th>S.No.</th>
+      <th>Item Department</th>
+      <th>Department Code</th>
+      <th>Added date</th>
+      <!-- <th>Edit</th> -->
+
+      <th>Delete</th>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let item of dptdata;let i=index">
+        <td>{{i+1}}</td>
+        <td>{{item.department}}</td>
+        <td>{{item.dpcode}}</td>
+        <td>{{item.createddate}}</td>
+        <!-- <td><button class="btn btn-xs"  ><i class="fas fa-edit"></i>
+</button></td> -->
+        <td><button class="btn btn-danger btn-xs" (click)="showDialog(item.dpcode)"><i class="fas fa-trash-alt"></i>
+
+          </button></td>
+      </tr>
+
+      <tr>
+
+
+
+    </tbody>
+
+  </table>
+</div>

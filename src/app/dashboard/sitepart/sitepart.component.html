@@ -1,0 +1,56 @@
+<div class="card">
+    <h5 class="card-header bg-info">Add Site Module</h5>
+    <form #myForm="ngForm">
+        <div class="card-body">
+
+            <div class="form-group row">
+                <label for="inputState" class="col-sm-2 col-form-label">Select State</label>
+                <div class="col-sm-10">
+                    <select id="inputState" #state="ngModel" name="state" [(ngModel)]="siteModel.state"
+                        class="form-control" (change)="getCity()" required>
+                        <option selected value="">Please select state</option>
+                        <option *ngFor="let state of stdata" value="{{state.state}}">{{state.state}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputcity" class="col-sm-2 col-form-label">Select City</label>
+                <div class="col-sm-10">
+                    <select id="inputcity" #city="ngModel" (change)="getsiteByCity()" name="city" required [(ngModel)]="siteModel.city"
+                        class="form-control">
+                        <option selected value="">Please select city</option>
+                        <option *ngFor="let city of ctdata" value="{{city.cityid}}">{{city.city}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="inputEmail4" class="col-sm-2 col-form-label">Site</label>
+                <div class="col-sm-10">
+                    <select id="inputsitename" #sitename="ngModel"  name="sitename" required [(ngModel)]="siteModel.sitename"
+                    class="form-control">
+                    <option selected value="">Please select Site Name</option>
+                    <option *ngFor="let site of siteData" value="{{site.scode}}">{{site.sitename}}</option>
+                </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="inputEmail4" class="col-sm-2 col-form-label">Site Module</label>
+                <div class="col-sm-10">
+                    <input type="text" #site="ngModel" [(ngModel)]="siteModel.site" required name="site" class="form-control"
+                        id="inputEmail4" placeholder="Please enter site Module name">
+                </div>
+            </div>
+
+        </div>
+        <div class="card-footer text-center">
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button [disabled]="!myForm.valid" type="submit" (click)="postdata()" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<toastr-notification></toastr-notification>  

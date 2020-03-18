@@ -1,0 +1,68 @@
+<div class="card">
+  <h5 class="card-header bg-info">Add Location</h5>
+  <form #myForm="ngForm">
+    <div class="card-body">
+
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">State</label>
+        <div class="col-sm-10">
+          <input type="text" required #state="ngModel" name="state" [(ngModel)]="location.state" class="form-control"
+            id="inputEmail3" placeholder="Please enter location name">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputEmail4" class="col-sm-2 col-form-label">City</label>
+        <div class="col-sm-10">
+          <input type="text" required #city="ngModel" name="city" [(ngModel)]="location.city" class="form-control"
+            id="inputEmail4" placeholder="Please enter city name">
+        </div>
+      </div>
+
+    </div>
+    <div class="card-footer text-center">
+      <div class="form-group row">
+        <div class="col-sm-10">
+          <button type="submit" [disabled]="!myForm.valid" (click)="addlocation()"
+            class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<toastr-notification></toastr-notification>
+<div class="clerifix"><br /></div>
+
+<div class="table-responsive">
+  <table id="mytable" class="table  table-bordred table-striped">
+
+    <thead class="bg-info">
+      <th>S.No.</th>
+      <th>State</th>
+      <th>City</th>
+      <th>City Code</th>
+      <!-- <th>Edit</th> -->
+
+      <th>Delete</th>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let item of stdata;let i=index">
+        <td>{{i+1}}</td>
+        <td>{{item.state}}</td>
+        <td>{{item.city}}</td>
+        <td>{{item.cityid}}</td>
+        <!-- <td><button class="btn btn-xs"  ><i class="fas fa-edit"></i>
+</button></td> -->
+        <td><button class="btn btn-danger btn-xs"><i class="fas fa-trash-alt"></i>
+
+          </button></td>
+      </tr>
+
+      <tr>
+
+
+
+    </tbody>
+
+  </table>
+</div>

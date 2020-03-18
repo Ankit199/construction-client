@@ -1,0 +1,50 @@
+<div class="card">
+    <h5 class="card-header bg-info">Register User List {{reportData.length  > 0 ? " ( Total Records: " + reportData[0].total + " )" : '' }} </h5>
+</div>
+
+
+<div class="table-responsive">
+    <table id="mytable" class="table  table-bordred table-striped">
+         
+         <thead class="bg-info">  
+            <th>S.No.</th>
+         <th>State</th>
+         <th>City</th>
+         <th>Site</th>
+          <th>Name</th>
+          <th>Role</th>    
+          <th>Email</th>    
+          <th>Contact</th>        
+          <th>Date</th>
+          <th>Status</th>
+             <th>Delete</th>
+         </thead>
+  <tbody>
+  
+  <tr *ngFor="let item of reportData;let i= index;">
+    <td>{{i+1}}</td>
+  <td>{{item.state}}</td>
+  <td>{{item.city}}</td>
+  <td>{{item.sitename}}</td>
+  <td>{{item.name}}</td>
+  <td>{{item.role}}</td>
+  <td>{{item.email}}</td>
+  <td>{{item.contact}}</td>
+  <td>{{item.createdate}}</td>
+  <td>{{item.isActive == true ? "Active" : "Deactive"}}</td>
+  <!-- <td><button class="btn btn-xs"  ><i class="fas fa-edit"></i> -->
+  <!-- </button></td> -->
+  <td><button class="btn btn-danger btn-xs" (click)="showDialog(item)"><i class="fas fa-trash-alt"></i>
+   
+    </button></td>
+  </tr>
+  <tr>
+  </tbody>
+ 
+  </table>
+  </div>
+  <div class="card" *ngIf="reportData.length  > 0 && reportData.length < reportData[0].total">
+    <h5 class="card-header text-right"><button   class="btn btn-warning btn-sm pull-right" (click)="loadMore()">Load More Records</button></h5>
+</div>
+  <app-confirmation-dialog></app-confirmation-dialog> 
+  <toastr-notification></toastr-notification>  
